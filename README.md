@@ -5,7 +5,7 @@ This is the clone of the E-commerce platform flipkart
 
 To set up and run:
 
-### What You Need
+## What You Need
 
 - [Node.js](https://nodejs.org/) (latest version)
 - yarn (package manager)
