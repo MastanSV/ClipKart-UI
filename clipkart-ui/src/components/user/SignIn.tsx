@@ -1,16 +1,18 @@
 
-import { Button, Link, TextField, Typography } from '@mui/material';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { Button, IconButton, Link, TextField, Typography } from '@mui/material';
 import Box from '@mui/material/Box'
 import InputAdornment from '@mui/material/InputAdornment';
 import {inputBaseClasses} from '@mui/material/InputBase'
 import React, { useState } from 'react';
 
-const formContainerStyle:React.CSSProperties = {'display':'flex', 'flexDirection':'column', 'gap' : '15px', 'width':'300px', 'padding':'20px'}
+const formContainerStyle:React.CSSProperties = {'display':'flex', 'flexDirection':'column', 'gap' : '15px', 'width':'300px'}
 
 export default function SignIn()
 {
     const [userName, setUserName] = useState<string>('');
     const [password, setPassword] = useState<string>('');
+    const [showPassword, setShowPassword] = useState(false);
 
     const [isUserNameContainsError, setIsUserNameContainsError] = useState<boolean>(false);
     const [isPasswordContainsError, setIsPasswordContainsError] = useState<boolean>(false);
@@ -21,6 +23,7 @@ export default function SignIn()
 
     function handleUsername(event : React.ChangeEvent<HTMLInputElement>)
     {
+        setIsUserNameContainsError(false);
         setUserName(event.target.value);
     }
 
@@ -28,15 +31,6 @@ export default function SignIn()
     {
         setIsPasswordContainsError(false);
         setPassword(event.target.value);
-        setPasswordErrorHelperText('');
-
-        const isPasswordValid : boolean = validatePassword(event.target.value);
-
-        if(!isPasswordValid)
-        {
-            setIsPasswordContainsError(true);
-            setPasswordErrorHelperText('password length must be greater than 8 characters.!')
-        }
     }
 
     function validatePassword(passowrd : string)
@@ -46,15 +40,59 @@ export default function SignIn()
 
     function handleSubmitButtonClick()
     {
-        console.log('submit button clicked.!')
+        validateAndAddErrorToUserName();
+        validateAndAddErrorToPassword();
+    }
+
+    function validateAndAddErrorToUserName()
+    {
+        setIsUserNameContainsError(false);
+
+        const isValidUserName = validateUsername();
+        if(!isValidUserName)
+        {
+            setIsUserNameContainsError(true);
+        }
+    }
+
+    function validateAndAddErrorToPassword()
+    {
+        setIsPasswordContainsError(false);
+        setPassword(password);
+        setPasswordErrorHelperText('');
+
+        const isPasswordValid : boolean = validatePassword(password);
+
+        if(!isPasswordValid)
+        {
+            setIsPasswordContainsError(true);
+            setPasswordErrorHelperText('password length must be greater than 8 characters.!')
+        }
+    }
+
+    function validateUsername()
+    {
+        return !isNullOrEmpty(userName);
+    }
+
+    function isNullOrEmpty(str:string)
+    {
+        return !str || str.trim() === "";
     }
 
     return <Box component="form" noValidate autoComplete='off' sx={{
         width: 350,
         p: 3,
         borderRadius: 2,
-        boxShadow: 3, // Shadow intensity (1-25)
+        boxShadow: 7, 
         bgcolor: "background.paper",
+        textAlign: 'center',
+        padding: "2rem",
+        display: "flex",
+        alignItems: "center", 
+        justifyContent: "center",
+        mt:15,
+        ml:75
       }}>
         <div style={formContainerStyle}>
             <Typography variant='h4' sx={{fontWeight:"bold"}}>USER LOGIN</Typography>
@@ -90,21 +128,14 @@ export default function SignIn()
         id="outlined-suffix-shrink"
         label="Enter password"
         variant="outlined"
+        type={showPassword ? 'password' : 'text'}
         value={password}
         onChange={handlePassword}
         slotProps={{
           input: {
             endAdornment: (
-              <InputAdornment
-                position="end"
-                sx={{
-                  opacity: 0,
-                  pointerEvents: 'none',
-                  [`[data-shrink=true] ~ .${inputBaseClasses.root} > &`]: {
-                    opacity: 1,
-                  },
-                }}
-              >
+              <InputAdornment position="end">
+                <IconButton aria-label={ showPassword ? 'hide the password' : 'display the password'} onClick={() => setShowPassword((show) => !show)}>{showPassword ? <VisibilityOff /> : <Visibility/>}</IconButton>
               </InputAdornment>
             ),
           },
