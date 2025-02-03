@@ -30,6 +30,7 @@ export default function SignIn()
     function handlePassword(event: React.ChangeEvent<HTMLInputElement>)
     {
         setIsPasswordContainsError(false);
+        setPasswordErrorHelperText('');
         setPassword(event.target.value);
     }
 
