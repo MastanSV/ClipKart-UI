@@ -5,6 +5,7 @@ import Box from '@mui/material/Box'
 import InputAdornment from '@mui/material/InputAdornment';
 import {inputBaseClasses} from '@mui/material/InputBase'
 import React, { useState } from 'react';
+import axios from 'axios';
 
 const formContainerStyle:React.CSSProperties = {'display':'flex', 'flexDirection':'column', 'gap' : '15px', 'width':'300px'}
 
@@ -23,6 +24,7 @@ export default function SignIn()
 
     function handleUsername(event : React.ChangeEvent<HTMLInputElement>)
     {
+        setUserNameErrorHelperText('');
         setIsUserNameContainsError(false);
         setUserName(event.target.value);
     }
@@ -32,46 +34,57 @@ export default function SignIn()
         setIsPasswordContainsError(false);
         setPasswordErrorHelperText('');
         setPassword(event.target.value);
-    }
 
-    function validatePassword(passowrd : string)
-    {
-        return passowrd.length >= 8;
-    }
-
-    function handleSubmitButtonClick()
-    {
-        validateAndAddErrorToUserName();
-        validateAndAddErrorToPassword();
-    }
-
-    function validateAndAddErrorToUserName()
-    {
-        setIsUserNameContainsError(false);
-
-        const isValidUserName = validateUsername();
-        if(!isValidUserName)
-        {
-            setIsUserNameContainsError(true);
-        }
-    }
-
-    function validateAndAddErrorToPassword()
-    {
-        setIsPasswordContainsError(false);
-        setPassword(password);
-        setPasswordErrorHelperText('');
-
-        const isPasswordValid : boolean = validatePassword(password);
-
+        const isPasswordValid : boolean = validatePassword();
         if(!isPasswordValid)
         {
-            setIsPasswordContainsError(true);
-            setPasswordErrorHelperText('password length must be greater than 8 characters.!')
+          setIsPasswordContainsError(true);
+          setPasswordErrorHelperText('password length must be greater than 8 characters.!')
         }
     }
 
-    function validateUsername()
+    function validatePassword() : boolean
+    {
+        return password.length >= 8;
+    }
+
+    function handleSubmitButtonClick(event : React.FormEvent<HTMLFormElement>)
+    {
+        event.preventDefault();
+        setIsUserNameContainsError(false);
+        setIsPasswordContainsError(false);
+
+        const isValidUserName : boolean = validateUsername();
+        const isValidPassword : boolean = validatePassword();
+
+        if(!isValidUserName || !isValidPassword)
+        {
+          setIsUserNameContainsError(true);
+          setIsPasswordContainsError(true);
+          return;
+        }
+
+        const isUserLoggedIn : boolean = sendUserData();
+        console.log(isUserLoggedIn);
+    }
+
+    function sendUserData() : boolean
+    {
+      axios.post('/UserLogin/Login', {UserName : userName, Password : password})
+                    .then((response) => 
+                      { 
+                        console.log(response);
+                        return true;
+                      } )
+                    .catch((error) => 
+                      {
+                        console.log(error);
+                        return false;
+                      });
+      return false;
+    }
+
+    function validateUsername() : boolean
     {
         return !isNullOrEmpty(userName);
     }
@@ -81,7 +94,7 @@ export default function SignIn()
         return !str || str.trim() === "";
     }
 
-    return <Box component="form" noValidate autoComplete='off' sx={{
+    return <Box component="form" onSubmit={handleSubmitButtonClick} noValidate autoComplete='off' sx={{
         width: 350,
         p: 3,
         borderRadius: 2,
@@ -142,7 +155,7 @@ export default function SignIn()
           },
         }}
       />
-      <Button variant='contained' onClick={handleSubmitButtonClick}> Submit</Button>
+      <Button type='submit' variant='contained' > Submit</Button>
       <Link href='#' underline='hover' sx={{fontSize:'0.875rem'}}>Forgot password ?</Link>
         </div>
             
