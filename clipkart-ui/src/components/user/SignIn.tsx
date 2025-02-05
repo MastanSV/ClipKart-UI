@@ -7,8 +7,10 @@ import {inputBaseClasses} from '@mui/material/InputBase'
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const formContainerStyle:React.CSSProperties = {'display':'flex', 'flexDirection':'column', 'gap' : '15px', 'width':'300px'}
+const formContainerStyle: React.CSSProperties = { 'display': 'flex', 'flexDirection': 'column', 'gap': '15px', 'width': '300px' }
+const userApi = axios.create({baseURL: import.meta.env.VITE_LOCAL_HOST, headers:{'Content-Type' : 'application/json'}});
 
+const productsApi = axios.create({baseURL:import.meta.env.VITE_LOCAL_HOST});
 export default function SignIn()
 {
     const [userName, setUserName] = useState<string>('');
@@ -64,24 +66,30 @@ export default function SignIn()
           return;
         }
 
-        const isUserLoggedIn : boolean = sendUserData();
-        console.log(isUserLoggedIn);
+        sendUserData();
     }
 
-    function sendUserData() : boolean
+    async function sendUserData() 
     {
-      axios.post('/UserLogin/Login', {UserName : userName, Password : password})
-                    .then((response) => 
-                      { 
-                        console.log(response);
-                        return true;
-                      } )
-                    .catch((error) => 
-                      {
-                        console.log(error);
-                        return false;
-                      });
-      return false;
+
+      await productsApi.get('products/getproducts')
+            .then(res => {
+                console.log(res);
+              }).catch(error => {
+                console.log(error);
+              });
+
+      // await userApi.post('/UserLogin/Login', {UserName : userName, Password : password})
+      //               .then((response) => 
+      //                 { 
+      //                   console.log(response);
+      //                   return true;
+      //                 } )
+      //               .catch((error) => 
+      //                 {
+      //                   console.log(error);
+      //                   return false;
+      //                 });
     }
 
     function validateUsername() : boolean
