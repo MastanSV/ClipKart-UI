@@ -71,30 +71,19 @@ export default function SignIn()
 
     async function sendUserData() 
     {
-
-      await productsApi.get('products/getproducts')
-            .then(res => {
-                console.log(res);
-              }).catch(error => {
-                console.log(error);
-              });
-
-      // await userApi.post('/UserLogin/Login', {UserName : userName, Password : password})
-      //               .then((response) => 
-      //                 { 
-      //                   console.log(response);
-      //                   return true;
-      //                 } )
-      //               .catch((error) => 
-      //                 {
-      //                   console.log(error);
-      //                   return false;
-      //                 });
+        try {
+            const response = await productsApi.get('products/getproducts');
+            console.log(response);
+        }
+        catch (error) {
+            console.log(error);
+        }
     }
 
     function validateUsername() : boolean
     {
-        return !isNullOrEmpty(userName);
+      const userNameRegEx : RegExp = /^(?!\.)[a-zA-Z0-9._%+-]{1,64}@(?!-)[a-zA-Z0-9-]+(\.[a-zA-Z]{2,})+$/;
+      return !isNullOrEmpty(userName) && userNameRegEx.test(userName);
     }
 
     function isNullOrEmpty(str:string)
@@ -122,7 +111,7 @@ export default function SignIn()
         error={isUserNameContainsError}
         helperText={userNameErrorHelperText}
         id="outlined-suffix-shrink"
-        label="Enter user name"
+        label="Enter email"
         variant="outlined"
         onChange={handleUsername}
         value={userName}
