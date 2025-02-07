@@ -1,6 +1,6 @@
 
 import { Visibility, VisibilityOff } from '@mui/icons-material';
-import { Button, IconButton, Link, TextField, Typography } from '@mui/material';
+import { Alert, Button, IconButton, Link, Snackbar, TextField, Typography } from '@mui/material';
 import Box from '@mui/material/Box'
 import InputAdornment from '@mui/material/InputAdornment';
 import {inputBaseClasses} from '@mui/material/InputBase'
@@ -8,9 +8,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 const formContainerStyle: React.CSSProperties = { 'display': 'flex', 'flexDirection': 'column', 'gap': '15px', 'width': '300px' }
-const userApi = axios.create({baseURL: import.meta.env.VITE_LOCAL_HOST, headers:{'Content-Type' : 'application/json'}});
 
-const productsApi = axios.create({baseURL:import.meta.env.VITE_LOCAL_HOST});
+const userApi = axios.create({baseURL:import.meta.env.VITE_LOCAL_HOST});
 export default function SignIn()
 {
     const [userName, setUserName] = useState<string>('');
@@ -23,7 +22,7 @@ export default function SignIn()
     const [userNameErrorHelperText, setUserNameErrorHelperText] = useState<string>('');
     const [passwordErrorHelperText, setPasswordErrorHelperText] = useState<string>('');
     
-
+    const [snackBarOpen, setSnackBarOpen] = useState<boolean>(false);
     function handleUsername(event : React.ChangeEvent<HTMLInputElement>)
     {
         setUserNameErrorHelperText('');
@@ -59,6 +58,7 @@ export default function SignIn()
         const isValidUserName : boolean = validateUsername();
         const isValidPassword : boolean = validatePassword();
 
+
         if(!isValidUserName || !isValidPassword)
         {
           setIsUserNameContainsError(true);
@@ -69,14 +69,22 @@ export default function SignIn()
         sendUserData();
     }
 
+
     async function sendUserData() 
     {
         try {
-            const response = await productsApi.get('products/getproducts');
-            console.log(response);
+            const response  = await userApi.post('userlogin/login', {"username":userName, "password":password});
+            if(response.status === 200){
+              console.log(response.data);
+              setSnackBarOpen(true);
+            }
+            else{
+              console.log('Login failed.!');
+            }
         }
         catch (error) {
             console.log(error);
+
         }
     }
 
@@ -152,9 +160,11 @@ export default function SignIn()
           },
         }}
       />
+      <Snackbar open={snackBarOpen} autoHideDuration={3000}>
+        <Alert severity='success'>Login Successful.!</Alert>
+      </Snackbar>
       <Button type='submit' variant='contained' > Submit</Button>
       <Link href='#' underline='hover' sx={{fontSize:'0.875rem'}}>Forgot password ?</Link>
         </div>
-            
     </Box>;
 }
