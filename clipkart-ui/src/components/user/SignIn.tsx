@@ -7,7 +7,6 @@ import {inputBaseClasses} from '@mui/material/InputBase'
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const formContainerStyle: React.CSSProperties = { 'display': 'flex', 'flexDirection': 'column', 'gap': '15px', 'width': '300px' }
 
 const userApi = axios.create({baseURL:import.meta.env.VITE_LOCAL_HOST});
 export default function SignIn()
@@ -99,49 +98,52 @@ export default function SignIn()
         return !str || str.trim() === "";
     }
 
-    return <Box component="form" onSubmit={handleSubmitButtonClick} noValidate autoComplete='off' sx={{
-        width: 350,
+    return <Box  component="form" onSubmit={handleSubmitButtonClick} noValidate autoComplete='off' sx={{
         p: 3,
         borderRadius: 2,
         boxShadow: 7, 
         bgcolor: "background.paper",
+        boxSizing : 'border-box',
         textAlign: 'center',
         padding: "2rem",
         display: "flex",
+        flexDirection:"column",
+        gap:2,
         alignItems: "center", 
         justifyContent: "center",
-        mt:15,
-        ml:75
+        minWidth:'15vw',
+        margin:'auto'
       }}>
-        <div style={formContainerStyle}>
-            <Typography variant='h4' sx={{fontWeight:"bold"}}>USER LOGIN</Typography>
-        <TextField
-        error={isUserNameContainsError}
-        helperText={userNameErrorHelperText}
-        id="outlined-suffix-shrink"
-        label="Enter email"
-        variant="outlined"
-        onChange={handleUsername}
-        value={userName}
-        slotProps={{
-          input: {
-            endAdornment: (
-              <InputAdornment
-                position="end"
-                sx={{
-                  opacity: 0,
-                  pointerEvents: 'none',
-                  [`[data-shrink=true] ~ .${inputBaseClasses.root} > &`]: {
-                    opacity: 1,
-                  },
-                }}
-              >
-              </InputAdornment>
-            ),
-          },
-        }}
-      />
+          <Typography variant='h4' sx={{fontWeight:"bold", padding:'2px'}}>USER LOGIN</Typography>
+          <TextField
+          fullWidth
+          error={isUserNameContainsError}
+          helperText={userNameErrorHelperText}
+          id="outlined-suffix-shrink"
+          label="Enter email"
+          variant="outlined"
+          onChange={handleUsername}
+          value={userName}
+          slotProps={{
+            input: {
+              endAdornment: (
+                <InputAdornment
+                  position="end"
+                  sx={{
+                    opacity: 0,
+                    pointerEvents: 'none',
+                    [`[data-shrink=true] ~ .${inputBaseClasses.root} > &`]: {
+                      opacity: 1,
+                    },
+                  }}
+                >
+                </InputAdornment>
+              ),
+            },
+          }}
+        ></TextField>
       <TextField
+        fullWidth
         error={isPasswordContainsError}
         helperText={passwordErrorHelperText}
         id="outlined-suffix-shrink"
@@ -163,8 +165,7 @@ export default function SignIn()
       <Snackbar open={snackBarOpen} autoHideDuration={3000}>
         <Alert severity='success'>Login Successful.!</Alert>
       </Snackbar>
-      <Button type='submit' variant='contained' > Submit</Button>
+      <Button type='submit' variant='contained' fullWidth> Submit</Button>
       <Link href='#' underline='hover' sx={{fontSize:'0.875rem'}}>Forgot password ?</Link>
-        </div>
     </Box>;
 }
