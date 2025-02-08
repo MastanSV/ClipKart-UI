@@ -1,25 +1,12 @@
-import { AppBar, Button, IconButton, Toolbar, Typography } from '@mui/material'
 import './App.css'
+import ClipKartAppBar from './components/common/ClipKartAppBar';
 import SignIn from './components/user/SignIn'
-import MenuIcon from '@mui/icons-material/Menu'
+
 
 function App() {
   return (
     <div style={{display:'flex', flexDirection:'column', justifyContent:'space-between', height:'100vh', boxSizing: 'border-box'}}>
-      {/* <AppBar position='static'>
-        <Toolbar>
-          <IconButton size='large' edge='start' color='inherit' aria-lable='menu'></IconButton>
-        </Toolbar>
-      </AppBar> */}
-      <AppBar  position='static'>
-        <Toolbar>
-          <IconButton size='large' edge='start' color='inherit' aria-label='menu' sx={{mr:2}} >
-            <MenuIcon></MenuIcon>
-          </IconButton>
-          <Typography variant='h6' component='div' sx={{flexGrow:1}}></Typography>
-          <Button color='inherit'>Login</Button>
-        </Toolbar>
-      </AppBar>
+      <ClipKartAppBar />
       <SignIn />
     </div>
   )
