@@ -9,8 +9,8 @@ import axios from 'axios';
 import {STATUS_OK} from '../../constants/HttpStatusCode.ts'
 import { MAX_LENGTH_OF_PASSWORD_ } from '../../constants/GenericConstants.ts';
 
-
-const userApi = axios.create({baseURL:import.meta.env.VITE_LOCAL_HOST});
+axios.defaults.withCredentials = true;
+const api = axios.create({baseURL:import.meta.env.VITE_LOCAL_HOST});
 export default function SignIn()
 {
     const [userName, setUserName] = useState<string>('');
@@ -74,7 +74,7 @@ export default function SignIn()
     async function sendUserData() 
     {
         try {
-            const response  = await userApi.post('userlogin/login', {"username":userName, "password":password});
+            const response  = await api.post('userlogin/login', {"username":userName, "password":password});
             if(response.status === STATUS_OK){
               console.log(response.data);
               setSnackBarOpen(true);
