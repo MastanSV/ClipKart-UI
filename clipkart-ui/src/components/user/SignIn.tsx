@@ -6,6 +6,8 @@ import InputAdornment from '@mui/material/InputAdornment';
 import {inputBaseClasses} from '@mui/material/InputBase'
 import React, { useState } from 'react';
 import axios from 'axios';
+import {OK} from '../../constants/HttpStatusCode.ts'
+import { MAX_LENGTH_OF_PASSWORD_ } from '../../constants/GenericConstants.ts';
 
 
 const userApi = axios.create({baseURL:import.meta.env.VITE_LOCAL_HOST});
@@ -45,7 +47,7 @@ export default function SignIn()
 
     function validatePassword() : boolean
     {
-        return password.length >= 8;
+        return password.length >= MAX_LENGTH_OF_PASSWORD_;
     }
 
     function handleSubmitButtonClick(event : React.FormEvent<HTMLFormElement>)
@@ -73,7 +75,7 @@ export default function SignIn()
     {
         try {
             const response  = await userApi.post('userlogin/login', {"username":userName, "password":password});
-            if(response.status === 200){
+            if(response.status === OK){
               console.log(response.data);
               setSnackBarOpen(true);
             }

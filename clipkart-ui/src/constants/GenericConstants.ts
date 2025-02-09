@@ -1,0 +1,1 @@
+export const MAX_LENGTH_OF_PASSWORD_ : number = 8;
