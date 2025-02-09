@@ -6,7 +6,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import {inputBaseClasses} from '@mui/material/InputBase'
 import React, { useState } from 'react';
 import axios from 'axios';
-import {OK} from '../../constants/HttpStatusCode.ts'
+import {STATUS_OK} from '../../constants/HttpStatusCode.ts'
 import { MAX_LENGTH_OF_PASSWORD_ } from '../../constants/GenericConstants.ts';
 
 
@@ -75,7 +75,7 @@ export default function SignIn()
     {
         try {
             const response  = await userApi.post('userlogin/login', {"username":userName, "password":password});
-            if(response.status === OK){
+            if(response.status === STATUS_OK){
               console.log(response.data);
               setSnackBarOpen(true);
             }

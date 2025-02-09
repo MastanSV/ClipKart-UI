@@ -1,1 +1,1 @@
-export const OK : number = 200;
+export const STATUS_OK : number = 200;
