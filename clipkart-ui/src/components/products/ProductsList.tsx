@@ -5,7 +5,7 @@ import { Box } from "@mui/material";
 function ProductsList()
 {
     return <>
-        <Box sx={{display:'flex', flexDirection:'row', flexWrap:'wrap'}}>
+        <Box sx={{display:'flex', flexDirection:'row', flexWrap:'wrap', justifyContent:"space-between" }}>
             {productsData.map((product, index) => (
                 <Product key={index} {...product} />
             ))}
