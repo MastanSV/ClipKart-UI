@@ -1,0 +1,276 @@
+[
+    {
+      "name": "iPhone12 mini",
+      "description": "Latest model with AI camera",
+      "price": "45000",
+      "rating": 4.5,
+      "reviews": "37.5k"
+    },
+    {
+      "name": "Samsung Galaxy S21",
+      "description": "Flagship smartphone with dynamic AMOLED display",
+      "price": "69999",
+      "rating": 4.7,
+      "reviews": "42.3k"
+    },
+    {
+      "name": "OnePlus 11",
+      "description": "Fast performance with Hasselblad camera",
+      "price": "59999",
+      "rating": 4.6,
+      "reviews": "31.8k"
+    },
+    {
+      "name": "MacBook Air M2",
+      "description": "Lightweight laptop with M2 chip",
+      "price": "115000",
+      "rating": 4.8,
+      "reviews": "18.2k"
+    },
+    {
+      "name": "Dell XPS 13",
+      "description": "Ultra-thin laptop with InfinityEdge display",
+      "price": "98000",
+      "rating": 4.4,
+      "reviews": "15.9k"
+    },
+    {
+      "name": "Sony WH-1000XM5",
+      "description": "Industry-leading noise-cancelling headphones",
+      "price": "29999",
+      "rating": 4.7,
+      "reviews": "22.5k"
+    },
+    {
+      "name": "AirPods Pro 2",
+      "description": "Advanced noise cancellation with spatial audio",
+      "price": "24999",
+      "rating": 4.6,
+      "reviews": "35.4k"
+    },
+    {
+      "name": "Samsung Galaxy Watch 5",
+      "description": "Fitness-focused smartwatch with AMOLED display",
+      "price": "28999",
+      "rating": 4.3,
+      "reviews": "12.1k"
+    },
+    {
+      "name": "Fitbit Charge 5",
+      "description": "Health tracker with GPS and heart rate monitoring",
+      "price": "15999",
+      "rating": 4.2,
+      "reviews": "9.8k"
+    },
+    {
+      "name": "Canon EOS 90D",
+      "description": "Professional DSLR with 32.5 MP sensor",
+      "price": "115000",
+      "rating": 4.5,
+      "reviews": "8.7k"
+    },
+    {
+      "name": "GoPro HERO11",
+      "description": "Action camera with 5.3K video recording",
+      "price": "48000",
+      "rating": 4.6,
+      "reviews": "19.4k"
+    },
+    {
+      "name": "Sony PlayStation 5",
+      "description": "Next-gen gaming console with ultra-fast SSD",
+      "price": "49990",
+      "rating": 4.9,
+      "reviews": "54.3k"
+    },
+    {
+      "name": "Xbox Series X",
+      "description": "Powerful gaming console with 4K support",
+      "price": "52990",
+      "rating": 4.8,
+      "reviews": "41.7k"
+    },
+    {
+      "name": "JBL Flip 6",
+      "description": "Portable Bluetooth speaker with deep bass",
+      "price": "12999",
+      "rating": 4.5,
+      "reviews": "27.6k"
+    },
+    {
+      "name": "Kindle Paperwhite",
+      "description": "E-reader with adjustable warm light",
+      "price": "13999",
+      "rating": 4.7,
+      "reviews": "33.5k"
+    },
+    {
+      "name": "Logitech MX Master 3",
+      "description": "Advanced wireless mouse for professionals",
+      "price": "8999",
+      "rating": 4.6,
+      "reviews": "13.4k"
+    },
+    {
+      "name": "Apple iPad Air",
+      "description": "Powerful tablet with A14 Bionic chip",
+      "price": "54900",
+      "rating": 4.7,
+      "reviews": "29.9k"
+    },
+    {
+      "name": "Lenovo Tab P11",
+      "description": "High-performance Android tablet",
+      "price": "24999",
+      "rating": 4.3,
+      "reviews": "11.5k"
+    },
+    {
+      "name": "Bose QuietComfort 45",
+      "description": "Wireless headphones with superior noise cancellation",
+      "price": "34999",
+      "rating": 4.8,
+      "reviews": "14.6k"
+    },
+    {
+      "name": "Realme Narzo 50",
+      "description": "Budget smartphone with 120Hz display",
+      "price": "14999",
+      "rating": 4.4,
+      "reviews": "20.1k"
+    },
+    {
+      "name": "ASUS ROG Phone 6",
+      "description": "Gaming smartphone with 165Hz AMOLED display",
+      "price": "71999",
+      "rating": 4.7,
+      "reviews": "10.8k"
+    },
+    {
+      "name": "Oppo Reno 8",
+      "description": "Sleek design with powerful AI-enhanced camera",
+      "price": "29999",
+      "rating": 4.5,
+      "reviews": "17.3k"
+    },
+    {
+      "name": "HP Pavilion 15",
+      "description": "Versatile laptop for work and entertainment",
+      "price": "62999",
+      "rating": 4.3,
+      "reviews": "13.2k"
+    },
+    {
+      "name": "Samsung Galaxy Buds 2",
+      "description": "Compact earbuds with dynamic sound",
+      "price": "11999",
+      "rating": 4.4,
+      "reviews": "23.6k"
+    },
+    {
+      "name": "Mi Smart Band 7",
+      "description": "Affordable fitness tracker with AMOLED display",
+      "price": "3999",
+      "rating": 4.2,
+      "reviews": "18.7k"
+    },
+    {
+      "name": "Apple Magic Keyboard",
+      "description": "Sleek wireless keyboard with touch ID",
+      "price": "22999",
+      "rating": 4.6,
+      "reviews": "9.4k"
+    },
+    {
+      "name": "Anker PowerCore 20000",
+      "description": "High-capacity portable charger with fast charging",
+      "price": "3499",
+      "rating": 4.5,
+      "reviews": "21.1k"
+    },
+    {
+      "name": "DJI Mini 3 Pro",
+      "description": "Compact drone with 4K video and advanced sensors",
+      "price": "85000",
+      "rating": 4.8,
+      "reviews": "6.5k"
+    },
+    {
+      "name": "Samsung SSD 980 Pro",
+      "description": "High-speed NVMe SSD for gaming and productivity",
+      "price": "15999",
+      "rating": 4.9,
+      "reviews": "12.7k"
+    },
+    {
+      "name": "Philips Hue Smart Bulb",
+      "description": "Smart lighting with app and voice control",
+      "price": "2499",
+      "rating": 4.4,
+      "reviews": "14.3k"
+    },
+    {
+      "name": "TP-Link Archer AX50",
+      "description": "Wi-Fi 6 router for fast and stable internet",
+      "price": "8999",
+      "rating": 4.5,
+      "reviews": "10.2k"
+    },
+    {
+      "name": "Seagate 2TB External HDD",
+      "description": "Reliable external hard drive for backups",
+      "price": "5499",
+      "rating": 4.3,
+      "reviews": "16.9k"
+    },
+    {
+      "name": "Amazfit GTR 4",
+      "description": "Smartwatch with advanced health tracking",
+      "price": "17999",
+      "rating": 4.2,
+      "reviews": "8.4k"
+    },
+    {
+      "name": "Nikon Z50",
+      "description": "Mirrorless camera with exceptional low-light performance",
+      "price": "92500",
+      "rating": 4.6,
+      "reviews": "7.3k"
+    },
+    {
+      "name": "Fire TV Stick 4K",
+      "description": "Streaming device with Alexa voice remote",
+      "price": "3999",
+      "rating": 4.7,
+      "reviews": "38.1k"
+    },
+    {
+      "name": "Logitech C920 Webcam",
+      "description": "Full HD webcam for video calls and streaming",
+      "price": "7499",
+      "rating": 4.5,
+      "reviews": "19.8k"
+    },
+    {
+      "name": "Echo Dot (5th Gen)",
+      "description": "Smart speaker with Alexa voice assistant",
+      "price": "4999",
+      "rating": 4.6,
+      "reviews": "44.7k"
+    },
+    {
+      "name": "WD My Passport 4TB",
+      "description": "Portable external hard drive with encryption",
+      "price": "8999",
+      "rating": 4.4,
+      "reviews": "21.3k"
+    },
+    {
+      "name": "Google Pixel 7",
+      "description": "Clean Android experience with Tensor chip",
+      "price": "59999",
+      "rating": 4.7,
+      "reviews": "24.6k"
+    }
+  ]
+  
