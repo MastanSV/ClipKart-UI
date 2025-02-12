@@ -30,7 +30,8 @@ function ProductsList() {
           display: 'flex',
           flexDirection: 'row',
           flexWrap: 'wrap',
-          justifyContent: 'space-between',
+          justifyContent: 'space-evenly',
+          gap: 4,
         }}
       >
         {productsData.map((product, index) => (
