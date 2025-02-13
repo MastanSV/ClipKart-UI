@@ -4,15 +4,14 @@ import axios from 'axios';
 
 const api = axios.create({ baseURL: import.meta.env.VITE_LOCAL_HOST });
 
-function ClipKartPaginationBar() {
+function ClipKartPaginationBar({ pageNumber: number }) {
   const [count, setCount] = useState<number>(16);
-  const [pageNumber, setPageNumber] = useState<number>(1);
 
   function handlePageChange(event: React.ChangeEvent<unknown>, page: number) {
     const fetchData = async () => {
       try {
         const response = await api.get(
-          `/products/getproducts/${count}/${pageNumber}`
+          `/products/getproducts/${count}/${page}`
         );
 
         console.log(`response : ${response.data.products}`);
