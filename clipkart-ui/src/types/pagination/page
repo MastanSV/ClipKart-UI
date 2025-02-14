@@ -1,0 +1,7 @@
+import react from 'react';
+
+export interface pageProps {
+  page: string;
+  count: number;
+  onChange: React.ChangeEvent<unknown>;
+}

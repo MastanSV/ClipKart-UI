@@ -1,7 +1,7 @@
 import { Box, Card, CardContent, Rating, Typography } from '@mui/material';
-import { ProductCardProps } from '../../types/products/product';
+import { IProductCardProps } from '../../types/products/product';
 
-function Product(product: ProductCardProps) {
+function Product(product: IProductCardProps) {
   return (
     <>
       <Card sx={{ width: 275, height: 150, margin: 1 }}>

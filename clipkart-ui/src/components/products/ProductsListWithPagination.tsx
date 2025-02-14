@@ -1,12 +1,12 @@
 import ClipKartPaginationBar from '../common/Pagination';
-import ProductsList from './ProductsList';
+import IProductsList from './ProductsList';
 import { useState } from 'react';
 
 function ProductsListWithPagination() {
   const [pageNumber, setPageNumber] = useState<number>();
   return (
     <>
-      <ProductsList />
+      {/* <ProductsList /> */}
       <ClipKartPaginationBar pageNumber={pageNumber} />
     </>
   );
