@@ -3,17 +3,13 @@ import { Pagination } from '@mui/material';
 export interface pageProps {
   page: number;
   count: number;
-  setPage: (page: number) => void;
+  onChange: () => React.ChangeEvent<unknown>;
 }
 
-function ClipKartPaginationBar({ page, count, setPage }: pageProps) {
+function ClipKartPaginationBar({ page, count, onChange }: pageProps) {
   return (
     <>
-      <Pagination
-        onChange={() => setPage(page)}
-        count={count}
-        page={page}
-      ></Pagination>
+      <Pagination onChange={onChange} count={count} page={page}></Pagination>
     </>
   );
 }

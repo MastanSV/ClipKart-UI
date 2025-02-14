@@ -14,6 +14,7 @@ const api = axios.create({ baseURL: import.meta.env.VITE_LOCAL_HOST });
 function App() {
   const [products, setProducts] = useState<IProductCardProps[]>([]);
   const [page, setPage] = useState<number>(1);
+  const [pageCount, setPageCount] = useState<number>(1);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,6 +22,7 @@ function App() {
         const response = await api.get(`/products/getProducts/12/${page}`);
         console.log(response.data.products);
         setProducts(response.data.products);
+        setPageCount(Math.floor(Math.ceil(response.data.totalElements / 12)));
       } catch (error) {
         console.error(error);
       }
@@ -28,6 +30,13 @@ function App() {
 
     fetchData();
   }, [page]);
+
+  function handlePageNumberChange(
+    event: React.ChangeEvent<unknown>,
+    selectedPage: number
+  ) {
+    setPage(selectedPage);
+  }
 
   return (
     <div
@@ -41,7 +50,11 @@ function App() {
     >
       <ClipKartAppBar />
       <ProductsList productsData={products} />
-      <Pagination page={page} count={10} setPage={setPage} />
+      <Pagination
+        page={page}
+        count={pageCount}
+        onChange={handlePageNumberChange}
+      />
     </div>
   );
 }
