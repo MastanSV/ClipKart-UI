@@ -43,9 +43,10 @@ function App() {
       style={{
         display: 'flex',
         flexDirection: 'column',
-        height: '100vh',
+        height: '95vh',
         boxSizing: 'border-box',
         alignItems: 'center',
+        justifyContent: 'space-between',
       }}
     >
       <ClipKartAppBar />
