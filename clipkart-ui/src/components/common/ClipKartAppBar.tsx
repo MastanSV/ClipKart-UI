@@ -3,6 +3,7 @@ import { styled, alpha } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import InputBase from '@mui/material/InputBase';
+import { IAppBarSearchElementProps } from '../../types/common/appbar';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -12,7 +13,7 @@ const Search = styled('div')(({ theme }) => ({
     backgroundColor: alpha(theme.palette.common.white, 0.25),
   },
   marginLeft: 0,
-  marginRight: 100,
+  marginRight: '5ch',
   width: '100%',
   [theme.breakpoints.up('sm')]: {
     marginLeft: theme.spacing(1),
@@ -47,9 +48,11 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-function ClipKartAppBar() {
+function ClipKartAppBar({
+  handleOnChangeSearchInput,
+}: IAppBarSearchElementProps) {
   return (
-    <AppBar position="sticky">
+    <AppBar position="static">
       <Toolbar>
         <IconButton
           size="large"
@@ -72,6 +75,7 @@ function ClipKartAppBar() {
           <StyledInputBase
             placeholder="Search…"
             inputProps={{ 'aria-label': 'search' }}
+            onChange={handleOnChangeSearchInput}
           />
         </Search>
         <Button color="inherit">Login</Button>
