@@ -21,23 +21,7 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        if (searchText === '') {
-          const response = await api.get(`/products/getProducts/12/${page}`);
-          console.log(response.data.products);
-          setProducts(response.data.products);
-          setPageCount(Math.floor(Math.ceil(response.data.totalElements / 12)));
-        } else {
-          const response = await api.get(
-            `/products/getProducts/${searchText}/12/${page}`
-          );
-          console.log(response.data.products);
-          setProducts(response.data.products);
-          setPageCount(
-            Math.floor(
-              Math.ceil(response.data.totalSearchMatchingElementsCount / 12)
-            )
-          );
-        }
+        await getProducts();
       } catch (error) {
         console.error(error);
       }
@@ -45,6 +29,32 @@ function App() {
 
     fetchData();
   }, [page, searchText]);
+
+  async function getProducts() {
+    if (searchText === '') {
+      await getAllProducts();
+    } else {
+      await getProductsWithSearchText();
+    }
+  }
+
+  async function getAllProducts() {
+    const response = await api.get(`/products/getProducts/12/${page}`);
+    console.log(response.data.products);
+    setProducts(response.data.products);
+    setPageCount(Math.floor(Math.ceil(response.data.totalElements / 12)));
+  }
+
+  async function getProductsWithSearchText() {
+    const response = await api.get(
+      `/products/getProducts/${searchText}/12/${page}`
+    );
+    console.log(response.data.products);
+    setProducts(response.data.products);
+    setPageCount(
+      Math.floor(Math.ceil(response.data.totalSearchMatchingElementsCount / 12))
+    );
+  }
 
   function handlePageNumberChange(
     event: React.ChangeEvent<unknown>,
@@ -57,6 +67,7 @@ function App() {
     event: React.ChangeEvent<HTMLInputElement>
   ) {
     console.log(event.target.value);
+    setPage(1);
     setSearchText(event.target.value);
   }
 
