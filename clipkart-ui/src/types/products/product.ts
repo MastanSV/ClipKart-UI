@@ -8,4 +8,7 @@ export interface IProductCardProps {
 
 export interface IProductsList {
   productsData: IProductCardProps[];
+  onAddToCartButtonClicked: (
+    productsData: IProductCardProps
+  ) => React.MouseEvent<HTMLButtonElement>;
 }

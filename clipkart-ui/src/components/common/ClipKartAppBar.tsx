@@ -52,7 +52,7 @@ function ClipKartAppBar({
   handleOnChangeSearchInput,
 }: IAppBarSearchElementProps) {
   return (
-    <AppBar position="static">
+    <AppBar position="static" sx={{ mb: 1 }}>
       <Toolbar>
         <IconButton
           size="large"

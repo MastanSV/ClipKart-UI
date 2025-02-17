@@ -5,7 +5,7 @@ import Product from './components/products/Product';
 import ProductsList from './components/products/ProductsList';
 import { Pagination } from '@mui/material';
 import ClipKartPaginationBar from './components/common/Pagination';
-import { IProductCardProps } from './types/products/product';
+import { IProductsList } from './types/products/product';
 import { IAppBarSearchElementProps } from './types/common/appbar';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -13,7 +13,7 @@ import axios from 'axios';
 const api = axios.create({ baseURL: import.meta.env.VITE_LOCAL_HOST });
 
 function App() {
-  const [products, setProducts] = useState<IProductCardProps[]>([]);
+  const [products, setProducts] = useState<IProductsList[]>();
   const [searchText, setSearchText] = useState<string>('');
   const [page, setPage] = useState<number>(1);
   const [pageCount, setPageCount] = useState<number>(1);
@@ -76,15 +76,15 @@ function App() {
       style={{
         display: 'flex',
         flexDirection: 'column',
-        height: '95vh',
         boxSizing: 'border-box',
         alignItems: 'center',
         justifyContent: 'space-between',
       }}
     >
       <ClipKartAppBar handleOnChangeSearchInput={handleOnnSearchInputChange} />
-      <ProductsList productsData={products} />
+      <ProductsList products={products} />
       <Pagination
+        sx={{ mt: 1 }}
         page={page}
         count={pageCount}
         onChange={handlePageNumberChange}
