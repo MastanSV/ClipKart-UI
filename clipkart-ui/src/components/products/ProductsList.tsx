@@ -1,8 +1,8 @@
 import Product from './Product';
 import { Box } from '@mui/material';
-import { IProductsList } from '../../types/products/product';
+import { IProductListProps } from '../../types/products/product';
 
-function ProductsList(products: IProductsList) {
+function ProductsList(products: IProductListProps) {
   return (
     <>
       <Box
@@ -14,8 +14,8 @@ function ProductsList(products: IProductsList) {
           gap: 3,
         }}
       >
-        {products.productsData.map((product, index) => (
-          <Product key={index} {...product} />
+        {products.product.map((product, index) => (
+          <Product key={index} product={product} />
         ))}
       </Box>
     </>

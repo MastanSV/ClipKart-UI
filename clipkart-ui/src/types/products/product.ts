@@ -1,4 +1,4 @@
-export interface IProductCardProps {
+export interface IProduct {
   name: string;
   price: string;
   rating: number;
@@ -6,9 +6,11 @@ export interface IProductCardProps {
   description: string;
 }
 
-export interface IProductsList {
-  productsData: IProductCardProps[];
-  onAddToCartButtonClicked: (
-    productsData: IProductCardProps
-  ) => React.MouseEvent<HTMLButtonElement>;
+export interface IProductListProps {
+  product: IProduct[];
+  onAddToCartButtonClicked: (product: IProduct) => void;
+}
+
+export interface IProductProps {
+  product: IProduct;
 }
