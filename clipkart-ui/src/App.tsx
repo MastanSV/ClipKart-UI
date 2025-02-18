@@ -5,7 +5,7 @@ import Product from './components/products/Product';
 import ProductsList from './components/products/ProductsList';
 import { Pagination } from '@mui/material';
 import ClipKartPaginationBar from './components/common/Pagination';
-import { IProductListProps } from './types/products/product';
+import { IProduct, IProductListProps } from './types/products/product';
 import { IAppBarSearchElementProps } from './types/common/appbar';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -13,7 +13,7 @@ import axios from 'axios';
 const api = axios.create({ baseURL: import.meta.env.VITE_LOCAL_HOST });
 
 function App() {
-  const [products, setProducts] = useState<IProductListProps[]>();
+  const [products, setProducts] = useState<IProductListProps['products']>([]);
   const [searchText, setSearchText] = useState<string>('');
   const [page, setPage] = useState<number>(1);
   const [pageCount, setPageCount] = useState<number>(1);
@@ -71,6 +71,12 @@ function App() {
     setSearchText(event.target.value);
   }
 
+  function handleAddToCartButton(product: IProduct) {
+    console.log(
+      `Clicked on product. Name : ${product.name} & Description : ${product.description}`
+    );
+  }
+
   return (
     <div
       style={{
@@ -82,7 +88,10 @@ function App() {
       }}
     >
       <ClipKartAppBar handleOnChangeSearchInput={handleOnnSearchInputChange} />
-      <ProductsList product={products} />
+      <ProductsList
+        products={products}
+        onAddToCartButtonClicked={handleAddToCartButton}
+      />
       <Pagination
         sx={{ mt: 1 }}
         page={page}

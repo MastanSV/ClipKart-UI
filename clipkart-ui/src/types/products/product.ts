@@ -7,10 +7,11 @@ export interface IProduct {
 }
 
 export interface IProductListProps {
-  product: IProduct[];
+  products: IProduct[];
   onAddToCartButtonClicked: (product: IProduct) => void;
 }
 
 export interface IProductProps {
   product: IProduct;
+  onAddToCartButtonClicked: (product: IProduct) => void;
 }

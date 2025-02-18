@@ -9,33 +9,32 @@ import {
 } from '@mui/material';
 import { IProductProps } from '../../types/products/product';
 
-function Product(productProps: IProductProps) {
+function Product({ product, onAddToCartButtonClicked }: IProductProps) {
+  function handleAddToCartButtonClicked() {
+    onAddToCartButtonClicked(product);
+  }
   return (
     <>
       <Card sx={{ display: 'flex', flexDirection: 'column', width: 300 }}>
         <CardContent sx={{ flexGrow: 1 }}>
           {/* <CardHeader style={{fontWeight:12}}>iPhone 12 mini</CardHeader> */}
           {/* <Typography  sx={{color:'rebeccapurple', fontSize: 25}}>iPhone12 mini</Typography> */}
-          <Typography variant="h6">{productProps.product.name}</Typography>
-          <Typography variant="body2">
-            {productProps.product.description}
-          </Typography>
+          <Typography variant="h6">{product.name}</Typography>
+          <Typography variant="body2">{product.description}</Typography>
           <Typography variant="h6" color="primary">
-            {productProps.product.price} INR
+            {product.price} INR
           </Typography>
           <Box display="flex">
-            <Rating
-              value={productProps.product.rating}
-              precision={0.5}
-              readOnly
-            />
+            <Rating value={product.rating} precision={0.5} readOnly />
             <Typography variant="body2" sx={{ ml: 1, mt: 0.25 }}>
-              {productProps.product.reviews} Reviews
+              {product.reviews} Reviews
             </Typography>
           </Box>
         </CardContent>
         <CardActionArea>
-          <Button size="small">Add to cart</Button>
+          <Button size="small" onClick={handleAddToCartButtonClicked}>
+            Add to cart
+          </Button>
         </CardActionArea>
       </Card>
     </>

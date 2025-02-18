@@ -2,7 +2,10 @@ import Product from './Product';
 import { Box } from '@mui/material';
 import { IProductListProps } from '../../types/products/product';
 
-function ProductsList(products: IProductListProps) {
+function ProductsList({
+  products,
+  onAddToCartButtonClicked,
+}: IProductListProps) {
   return (
     <>
       <Box
@@ -14,8 +17,12 @@ function ProductsList(products: IProductListProps) {
           gap: 3,
         }}
       >
-        {products.product.map((product, index) => (
-          <Product key={index} product={product} />
+        {products.map((product, index) => (
+          <Product
+            key={index}
+            product={product}
+            onAddToCartButtonClicked={() => onAddToCartButtonClicked(product)}
+          />
         ))}
       </Box>
     </>
