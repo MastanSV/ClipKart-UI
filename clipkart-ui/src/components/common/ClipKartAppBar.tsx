@@ -1,9 +1,19 @@
-import { AppBar, IconButton, Typography, Toolbar, Button } from '@mui/material';
+import {
+  AppBar,
+  IconButton,
+  Typography,
+  Toolbar,
+  Button,
+  Icon,
+  Badge,
+  Tooltip,
+} from '@mui/material';
 import { styled, alpha } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import InputBase from '@mui/material/InputBase';
 import { IAppBarSearchElementProps } from '../../types/common/appbar';
+import ShoppingCartRoundedIcon from '@mui/icons-material/ShoppingCartRounded';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -50,6 +60,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 function ClipKartAppBar({
   handleOnChangeSearchInput,
+  cartCount,
 }: IAppBarSearchElementProps) {
   return (
     <AppBar position="static" sx={{ mb: 1 }}>
@@ -63,11 +74,21 @@ function ClipKartAppBar({
         >
           <MenuIcon></MenuIcon>
         </IconButton>
-        <Typography
-          variant="h6"
-          component="div"
-          sx={{ flexGrow: 1 }}
-        ></Typography>
+        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          Clip Kart
+        </Typography>
+        <Tooltip title="viewcart">
+          <IconButton
+            size="large"
+            aria-label="show 0 items in the cart"
+            color="inherit"
+          >
+            <Badge badgeContent={cartCount} color="error">
+              <ShoppingCartRoundedIcon></ShoppingCartRoundedIcon>
+            </Badge>
+          </IconButton>
+        </Tooltip>
+
         <Search>
           <SearchIconWrapper>
             <SearchIcon></SearchIcon>

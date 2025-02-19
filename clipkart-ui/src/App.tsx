@@ -1,12 +1,10 @@
 import './App.css';
 import ClipKartAppBar from './components/common/ClipKartAppBar';
 import SignIn from './components/user/SignIn';
-import Product from './components/products/Product';
 import ProductsList from './components/products/ProductsList';
 import { Pagination } from '@mui/material';
 import ClipKartPaginationBar from './components/common/Pagination';
 import { IProduct, IProductListProps } from './types/products/product';
-import { IAppBarSearchElementProps } from './types/common/appbar';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
@@ -17,6 +15,7 @@ function App() {
   const [searchText, setSearchText] = useState<string>('');
   const [page, setPage] = useState<number>(1);
   const [pageCount, setPageCount] = useState<number>(1);
+  const [cartCount, setCartCount] = useState<number>(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -75,6 +74,7 @@ function App() {
     console.log(
       `Clicked on product. Name : ${product.name} & Description : ${product.description}`
     );
+    setCartCount(cartCount + 1);
   }
 
   return (
@@ -87,7 +87,10 @@ function App() {
         justifyContent: 'space-between',
       }}
     >
-      <ClipKartAppBar handleOnChangeSearchInput={handleOnnSearchInputChange} />
+      <ClipKartAppBar
+        cartCount={cartCount}
+        handleOnChangeSearchInput={handleOnnSearchInputChange}
+      />
       <ProductsList
         products={products}
         onAddToCartButtonClicked={handleAddToCartButton}
