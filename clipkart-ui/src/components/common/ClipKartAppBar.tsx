@@ -83,6 +83,9 @@ function ClipKartAppBar({
             aria-label="show 0 items in the cart"
             color="inherit"
           >
+            <Typography variant="button" sx={{ mr: 1, mt: 0.5, fontSize: 15 }}>
+              cart
+            </Typography>
             <Badge badgeContent={cartCount} color="error">
               <ShoppingCartRoundedIcon></ShoppingCartRoundedIcon>
             </Badge>
