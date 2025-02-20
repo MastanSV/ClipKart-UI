@@ -7,6 +7,7 @@ import {
   Icon,
   Badge,
   Tooltip,
+  Modal,
 } from '@mui/material';
 import { styled, alpha } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -14,6 +15,8 @@ import SearchIcon from '@mui/icons-material/Search';
 import InputBase from '@mui/material/InputBase';
 import { IAppBarSearchElementProps } from '../../types/common/appbar';
 import ShoppingCartRoundedIcon from '@mui/icons-material/ShoppingCartRounded';
+import { useState } from 'react';
+import SignIn from '../user/SignIn';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -62,6 +65,11 @@ function ClipKartAppBar({
   handleOnChangeSearchInput,
   cartCount,
 }: IAppBarSearchElementProps) {
+  const [loginClick, setLoginClick] = useState<boolean>();
+  const [open, setOpen] = useState<boolean>();
+  function handleLoginClick() {
+    setLoginClick(true);
+  }
   return (
     <AppBar position="static" sx={{ mb: 1 }}>
       <Toolbar>
@@ -102,7 +110,12 @@ function ClipKartAppBar({
             onChange={handleOnChangeSearchInput}
           />
         </Search>
-        <Button color="inherit">Login</Button>
+        <Button color="inherit" onClick={handleLoginClick}>
+          Login
+        </Button>
+        <Modal open={login}>
+          <SignIn />
+        </Modal>
       </Toolbar>
     </AppBar>
   );
