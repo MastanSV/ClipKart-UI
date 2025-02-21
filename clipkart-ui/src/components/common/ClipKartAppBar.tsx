@@ -66,10 +66,16 @@ function ClipKartAppBar({
   cartCount,
 }: IAppBarSearchElementProps) {
   const [loginClick, setLoginClick] = useState<boolean>();
-  const [open, setOpen] = useState<boolean>();
+  const [open, setOpen] = useState<boolean>(false);
+
   function handleLoginClick() {
-    setLoginClick(true);
+    setOpen(true);
   }
+
+  function handleModalColse() {
+    setOpen(false);
+  }
+
   return (
     <AppBar position="static" sx={{ mb: 1 }}>
       <Toolbar>
@@ -113,7 +119,7 @@ function ClipKartAppBar({
         <Button color="inherit" onClick={handleLoginClick}>
           Login
         </Button>
-        <Modal open={login}>
+        <Modal open={open} onClose={handleModalColse}>
           <SignIn />
         </Modal>
       </Toolbar>
