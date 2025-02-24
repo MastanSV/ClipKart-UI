@@ -120,10 +120,14 @@ export const SignIn = React.forwardRef(() => {
         boxShadow: 5,
       }}
     >
-      <Typography variant="h4" sx={{ fontWeight: 'bold', padding: '2px' }}>
+      <Typography
+        variant="h4"
+        sx={{ fontWeight: 'bold', padding: '2px', textAlign: 'center' }}
+      >
         USER LOGIN
       </Typography>
       <TextField
+        sx={{ mt: 2, mb: 2 }}
         fullWidth
         error={isUserNameContainsError}
         helperText={userNameErrorHelperText}
@@ -150,6 +154,7 @@ export const SignIn = React.forwardRef(() => {
         }}
       ></TextField>
       <TextField
+        sx={{ mb: 2 }}
         fullWidth
         error={isPasswordContainsError}
         helperText={passwordErrorHelperText}
@@ -179,8 +184,7 @@ export const SignIn = React.forwardRef(() => {
       <Snackbar open={snackBarOpen} autoHideDuration={3000}>
         <Alert severity="success">Login Successful.!</Alert>
       </Snackbar>
-      <Button type="submit" variant="contained" fullWidth>
-        {' '}
+      <Button sx={{ mb: 2 }} type="submit" variant="contained" fullWidth>
         Submit
       </Button>
       <Link href="#" underline="hover" sx={{ fontSize: '0.875rem' }}>
