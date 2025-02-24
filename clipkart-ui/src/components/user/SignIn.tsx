@@ -18,7 +18,7 @@ import { MAX_LENGTH_OF_PASSWORD_ } from '../../constants/GenericConstants.ts';
 
 axios.defaults.withCredentials = true;
 const api = axios.create({ baseURL: import.meta.env.VITE_LOCAL_HOST });
-export default function SignIn() {
+export const SignIn = React.forwardRef(() => {
   const [userName, setUserName] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [showPassword, setShowPassword] = useState(false);
@@ -188,4 +188,4 @@ export default function SignIn() {
       </Link>
     </Box>
   );
-}
+});

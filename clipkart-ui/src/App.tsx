@@ -1,6 +1,6 @@
 import './App.css';
 import ClipKartAppBar from './components/common/ClipKartAppBar';
-import SignIn from './components/user/SignIn';
+import { SignIn } from './components/user/SignIn';
 import ProductsList from './components/products/ProductsList';
 import { Pagination } from '@mui/material';
 import ClipKartPaginationBar from './components/common/Pagination';

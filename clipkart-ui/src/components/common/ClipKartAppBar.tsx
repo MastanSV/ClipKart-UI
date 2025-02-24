@@ -16,7 +16,7 @@ import InputBase from '@mui/material/InputBase';
 import { IAppBarSearchElementProps } from '../../types/common/appbar';
 import ShoppingCartRoundedIcon from '@mui/icons-material/ShoppingCartRounded';
 import { useState } from 'react';
-import SignIn from '../user/SignIn';
+import { SignIn } from '../user/SignIn';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
