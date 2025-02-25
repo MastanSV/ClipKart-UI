@@ -187,7 +187,13 @@ export const SignIn = React.forwardRef(() => {
       <Button sx={{ mb: 2 }} type="submit" variant="contained" fullWidth>
         Submit
       </Button>
-      <Link href="#" underline="hover" sx={{ fontSize: '0.875rem' }}>
+      <Link
+        href="#"
+        underline="hover"
+        sx={{
+          fontSize: '0.875rem',
+        }}
+      >
         Forgot password ?
       </Link>
     </Box>
