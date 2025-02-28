@@ -2,11 +2,14 @@ import './App.css';
 import ClipKartAppBar from './components/common/ClipKartAppBar';
 import { SignIn } from './components/user/SignIn';
 import ProductsList from './components/products/ProductsList';
-import { Pagination } from '@mui/material';
+import { Alert, Pagination } from '@mui/material';
 import ClipKartPaginationBar from './components/common/Pagination';
 import { IProduct, IProductListProps } from './types/products/product';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
+import { LoginSuccessfulBannerContext } from './context/LoginSuccessfulBannerContext';
+import { Login } from '@mui/icons-material';
+import { Snackbar } from '@mui/material';
 
 const api = axios.create({ baseURL: import.meta.env.VITE_LOCAL_HOST });
 
@@ -16,6 +19,8 @@ function App() {
   const [page, setPage] = useState<number>(1);
   const [pageCount, setPageCount] = useState<number>(1);
   const [cartCount, setCartCount] = useState<number>(0);
+  const [showLoginSuccessful, setShowLoginSuccessful] =
+    useState<boolean>(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -76,32 +81,47 @@ function App() {
     );
     setCartCount(cartCount + 1);
   }
+  function handleLoginSuccess(variant: string): undefined {
+    console.log(`Show Login Successful Banner. variant is : ${variant}`);
+    setShowLoginSuccessful(true);
+  }
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        boxSizing: 'border-box',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-      }}
-    >
-      <ClipKartAppBar
-        cartCount={cartCount}
-        handleOnChangeSearchInput={handleOnnSearchInputChange}
-      />
-      <ProductsList
-        products={products}
-        onAddToCartButtonClicked={handleAddToCartButton}
-      />
-      <Pagination
-        sx={{ mt: 1 }}
-        page={page}
-        count={pageCount}
-        onChange={handlePageNumberChange}
-      />
-    </div>
+    <LoginSuccessfulBannerContext.Provider value={handleLoginSuccess}>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          boxSizing: 'border-box',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+        }}
+      >
+        <ClipKartAppBar
+          cartCount={cartCount}
+          handleOnChangeSearchInput={handleOnnSearchInputChange}
+        />
+        <ProductsList
+          products={products}
+          onAddToCartButtonClicked={handleAddToCartButton}
+        />
+        <Pagination
+          sx={{ mt: 1 }}
+          page={page}
+          count={pageCount}
+          onChange={handlePageNumberChange}
+        />
+        <Snackbar
+          open={showLoginSuccessful}
+          autoHideDuration={5000}
+          onClose={() => setShowLoginSuccessful(false)}
+        >
+          <Alert severity="success" variant="filled" sx={{ width: '100%' }}>
+            Login Successful !
+          </Alert>
+        </Snackbar>
+      </div>
+    </LoginSuccessfulBannerContext.Provider>
   );
 }
 

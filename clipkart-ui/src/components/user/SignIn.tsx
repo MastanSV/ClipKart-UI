@@ -16,11 +16,12 @@ import axios from 'axios';
 import { STATUS_OK } from '../../constants/HttpStatusCode.ts';
 import { MAX_LENGTH_OF_PASSWORD_ } from '../../constants/GenericConstants.ts';
 import { LoginSuccessfulBannerContext } from '../../context/LoginSuccessfulBannerContext.tsx';
+import signinProps from '../../types/common/signin.ts';
 
 axios.defaults.withCredentials = true;
 const api = axios.create({ baseURL: import.meta.env.VITE_LOCAL_HOST });
-export const SignIn = React.forwardRef(() => {
-  const loginSuccessfulHandler = useContext(LoginSuccessfulBannerContext);
+export const SignIn = React.forwardRef(({ setOpen }: signinProps, refs) => {
+  const handleLoginSuccess = useContext(LoginSuccessfulBannerContext);
   const [userName, setUserName] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [showPassword, setShowPassword] = useState(false);
@@ -73,7 +74,8 @@ export const SignIn = React.forwardRef(() => {
       setIsPasswordContainsError(true);
       return;
     }
-
+    setOpen(false);
+    handleLoginSuccess('success');
     sendUserData();
   }
 

@@ -120,7 +120,7 @@ function ClipKartAppBar({
           Login
         </Button>
         <Modal open={open} onClose={handleModalColse}>
-          <SignIn />
+          <SignIn setOpen={setOpen} />
         </Modal>
       </Toolbar>
     </AppBar>
