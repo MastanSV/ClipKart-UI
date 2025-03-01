@@ -8,10 +8,18 @@ import {
   Typography,
 } from '@mui/material';
 import { IProductProps } from '../../types/products/product';
+import { useState } from 'react';
 
 function Product({ product, onAddToCartButtonClicked }: IProductProps) {
+  const [cartText, setCartText] = useState<string>('Add to cart');
+  const [isAddedToCart, setIsAddedToCart] = useState<boolean>(false);
   function handleAddToCartButtonClicked() {
+    if (isAddedToCart) {
+      return;
+    }
     onAddToCartButtonClicked(product);
+    setCartText('Go to cart');
+    setIsAddedToCart(true);
   }
   return (
     <>
@@ -39,7 +47,7 @@ function Product({ product, onAddToCartButtonClicked }: IProductProps) {
         </CardContent>
         <CardActions onClick={handleAddToCartButtonClicked} sx={{ mt: -2 }}>
           <Button size="small" onClick={handleAddToCartButtonClicked}>
-            Add to cart
+            {cartText}
           </Button>
         </CardActions>
       </Card>
