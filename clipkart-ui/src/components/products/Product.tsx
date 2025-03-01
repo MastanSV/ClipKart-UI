@@ -2,7 +2,6 @@ import {
   Box,
   Button,
   Card,
-  CardActionArea,
   CardActions,
   CardContent,
   Rating,
@@ -18,14 +17,12 @@ function Product({ product, onAddToCartButtonClicked }: IProductProps) {
     <>
       <Card
         sx={{
-          display: 'flex',
+          flex: '1 1 calc(20% - 10px)',
           flexDirection: 'column',
-          width: '20%',
+          minWidth: '20%',
         }}
       >
-        <CardContent
-          sx={{ flexGrow: 1, minHeight: '100px', maxHeight: '500px' }}
-        >
+        <CardContent sx={{ flexGrow: 1 }}>
           {/* <CardHeader style={{fontWeight:12}}>iPhone 12 mini</CardHeader> */}
           {/* <Typography  sx={{color:'rebeccapurple', fontSize: 25}}>iPhone12 mini</Typography> */}
           <Typography variant="h6">{product.name}</Typography>
@@ -40,7 +37,7 @@ function Product({ product, onAddToCartButtonClicked }: IProductProps) {
             </Typography>
           </Box>
         </CardContent>
-        <CardActions onClick={handleAddToCartButtonClicked}>
+        <CardActions onClick={handleAddToCartButtonClicked} sx={{ mt: -2 }}>
           <Button size="small" onClick={handleAddToCartButtonClicked}>
             Add to cart
           </Button>

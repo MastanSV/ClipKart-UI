@@ -14,7 +14,8 @@ function ProductsList({
           flexDirection: 'row',
           flexWrap: 'wrap',
           justifyContent: 'space-evenly',
-          gap: 3,
+          gap: 5,
+          alignItems: 'stretch',
         }}
       >
         {products.map((product, index) => (

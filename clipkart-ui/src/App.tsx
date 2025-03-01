@@ -10,6 +10,7 @@ import axios from 'axios';
 import { LoginSuccessfulBannerContext } from './context/LoginSuccessfulBannerContext';
 import { Login } from '@mui/icons-material';
 import { Snackbar } from '@mui/material';
+import { CircularProgress } from '@mui/material';
 
 const api = axios.create({ baseURL: import.meta.env.VITE_LOCAL_HOST });
 
@@ -21,6 +22,7 @@ function App() {
   const [cartCount, setCartCount] = useState<number>(0);
   const [showLoginSuccessful, setShowLoginSuccessful] =
     useState<boolean>(false);
+  const [isDataLoading, setIsDataLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -44,6 +46,7 @@ function App() {
 
   async function getAllProducts() {
     const response = await api.get(`/products/getProducts/12/${page}`);
+    setIsDataLoading(false);
     console.log(response.data.products);
     setProducts(response.data.products);
     setPageCount(Math.floor(Math.ceil(response.data.totalElements / 12)));
@@ -95,16 +98,26 @@ function App() {
           boxSizing: 'border-box',
           alignItems: 'center',
           justifyContent: 'space-between',
+          width: '100%',
         }}
       >
         <ClipKartAppBar
           cartCount={cartCount}
           handleOnChangeSearchInput={handleOnnSearchInputChange}
         />
-        <ProductsList
-          products={products}
-          onAddToCartButtonClicked={handleAddToCartButton}
-        />
+        {isDataLoading ? (
+          <CircularProgress
+            sx={{
+              display: 'flex',
+              flexGrow: 1,
+            }}
+          />
+        ) : (
+          <ProductsList
+            products={products}
+            onAddToCartButtonClicked={handleAddToCartButton}
+          />
+        )}
         <Pagination
           sx={{ mt: 1 }}
           page={page}
@@ -116,7 +129,12 @@ function App() {
           autoHideDuration={5000}
           onClose={() => setShowLoginSuccessful(false)}
         >
-          <Alert severity="success" variant="filled" sx={{ width: '100%' }}>
+          <Alert
+            severity="success"
+            onClose={() => setShowLoginSuccessful(false)}
+            variant="filled"
+            sx={{ width: '100%' }}
+          >
             Login Successful !
           </Alert>
         </Snackbar>
