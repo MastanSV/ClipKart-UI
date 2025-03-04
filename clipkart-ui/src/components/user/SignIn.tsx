@@ -186,7 +186,7 @@ export const SignIn = React.forwardRef(({ setOpen }: signinProps, refs) => {
         }}
       />
       <Button sx={{ mb: 2 }} type="submit" variant="contained" fullWidth>
-        Submit
+        Login
       </Button>
       <Link
         href="#"

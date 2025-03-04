@@ -17,6 +17,7 @@ import { IAppBarSearchElementProps } from '../../types/common/appbar';
 import ShoppingCartRoundedIcon from '@mui/icons-material/ShoppingCartRounded';
 import { useState } from 'react';
 import { SignIn } from '../user/SignIn';
+import Signup from '../user/Signup';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -65,15 +66,22 @@ function ClipKartAppBar({
   handleOnChangeSearchInput,
   cartCount,
 }: IAppBarSearchElementProps) {
-  const [loginClick, setLoginClick] = useState<boolean>();
-  const [open, setOpen] = useState<boolean>(false);
+  const [openSignin, setOpenSignin] = useState<boolean>(false);
+  const [openSignup, setOpenSignup] = useState<boolean>(false);
 
   function handleLoginClick() {
-    setOpen(true);
+    setOpenSignin(true);
+  }
+  function handleSignupClick() {
+    setOpenSignup(true);
   }
 
-  function handleModalColse() {
-    setOpen(false);
+  function handleSigninModalClose() {
+    setOpenSignin(false);
+  }
+
+  function handleSignupModalClose() {
+    setOpenSignup(false);
   }
 
   return (
@@ -119,8 +127,14 @@ function ClipKartAppBar({
         <Button color="inherit" onClick={handleLoginClick}>
           Login
         </Button>
-        <Modal open={open} onClose={handleModalColse}>
-          <SignIn setOpen={setOpen} />
+        <Button color="inherit" onClick={handleSignupClick}>
+          Signup
+        </Button>
+        <Modal open={openSignin} onClose={handleSigninModalClose}>
+          <SignIn setOpen={setOpenSignin} />
+        </Modal>
+        <Modal open={openSignup} onClose={handleSignupModalClose}>
+          <Signup setOpenSignup={setOpenSignup}></Signup>
         </Modal>
       </Toolbar>
     </AppBar>
