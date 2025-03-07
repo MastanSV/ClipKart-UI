@@ -12,9 +12,17 @@ import React, { useState } from 'react';
 export const Signup = React.forwardRef(
   ({ setOpenSignup }: SignupProps, ref) => {
     const [firstName, setFirstName] = useState<string>('');
+    const [firstNameHelperText, setFirstNameHelperText] = useState<string>();
+    const [firstNameHasError, setFirstNameHasError] = useState<boolean>(false);
     const [lastName, setLastName] = useState<string>('');
+    const [lastNameHelperText, setLastNameHelperText] = useState<string>();
+    const [lastNameHasError, setLastNameHasError] = useState<boolean>();
     const [emailId, setEmailId] = useState<string>('');
+    const [emailIdHelperText, setEmailIdHelperText] = useState<string>();
+    const [emaildHasError, setEmailIdHasError] = useState<boolean>();
     const [password, setPassword] = useState<string>('');
+    const [passwordHelperText, setPasswordHelperText] = useState<string>();
+    const [passwordHasError, setPasswordHasError] = useState<boolean>();
 
     const emailIdRegExp: RegExp =
       /^(?!\.)[a-zA-Z0-9._%+-]{1,64}@(?!-)[a-zA-Z0-9-]+(\.[a-zA-Z]{2,})+$/;
@@ -38,12 +46,37 @@ export const Signup = React.forwardRef(
     const handleSubmitButtonClick: React.MouseEventHandler<
       HTMLButtonElement
     > = (e) => {
-      if (!isNullOrEmpty(emailId) && emailIdRegExp.test(emailId)) {
+      setFirstNameHasError(false);
+      setFirstNameHelperText('');
+      setLastNameHasError(false);
+      setLastNameHelperText('');
+      setEmailIdHasError(false);
+      setEmailIdHelperText('');
+      setPasswordHasError(false);
+      setPasswordHelperText('');
+
+      e.preventDefault();
+      if (isNullOrEmpty(firstName)) {
+        setFirstNameHelperText('first name required.');
+        setFirstNameHasError(true);
+      }
+      if (isNullOrEmpty(lastName)) {
+        setLastNameHelperText('Last name required.');
+        setLastNameHasError(true);
+      }
+      if (isNullOrEmpty(emailId)) {
+        setEmailIdHelperText('email id required.');
+        setEmailIdHasError(true);
+      }
+      if (isNullOrEmpty(password)) {
+        setPasswordHelperText('password required.');
+        setPasswordHasError(true);
+      } else if (!isNullOrEmpty(emailId) && emailIdRegExp.test(emailId)) {
         console.log('valid email id.');
         setOpenSignup(false);
       } else {
-        e.preventDefault();
-        console.log(e);
+        setEmailIdHelperText('Please enter valid emailId.');
+        setEmailIdHasError(true);
         return;
       }
     };
@@ -74,6 +107,8 @@ export const Signup = React.forwardRef(
           Sign up
         </Typography>
         <TextField
+          error={firstNameHasError}
+          helperText={firstNameHelperText}
           fullWidth
           variant="outlined"
           sx={{ mt: 2, mb: 2 }}
@@ -82,6 +117,8 @@ export const Signup = React.forwardRef(
           value={firstName}
         ></TextField>
         <TextField
+          error={lastNameHasError}
+          helperText={lastNameHelperText}
           fullWidth
           sx={{ mb: 2 }}
           label="Last name"
@@ -89,6 +126,8 @@ export const Signup = React.forwardRef(
           value={lastName}
         ></TextField>
         <TextField
+          error={emaildHasError}
+          helperText={emailIdHelperText}
           fullWidth
           sx={{ mb: 2 }}
           onChange={handleEmailId}
@@ -96,6 +135,8 @@ export const Signup = React.forwardRef(
           label="Email Id"
         ></TextField>
         <TextField
+          error={passwordHasError}
+          helperText={passwordHelperText}
           fullWidth
           sx={{ mb: 2 }}
           onChange={handlePassword}
